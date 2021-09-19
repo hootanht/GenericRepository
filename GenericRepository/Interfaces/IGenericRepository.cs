@@ -25,7 +25,6 @@ namespace GenericRepository.Interfaces
         Task<object> GetMinAsync(string propertyName);
         Task<decimal> GetSumAsync(Expression<Func<T, decimal>> where);
         Task<bool> IsExistAsync(Expression<Func<T, bool>> where);
-        Task<bool> IsAllAsync(Expression<Func<T, bool>> where);
         #endregion
 
         #region Command
