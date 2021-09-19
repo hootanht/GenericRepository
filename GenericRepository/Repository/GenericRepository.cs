@@ -36,6 +36,17 @@ namespace GenericRepository.Repository
         /// <param name="take">number to take from entity</param>
         /// <param name="skip">number to skip from entity</param>
         /// <returns></returns>
+        public async Task<IEnumerable<T>> GetAllAsync()
+        {
+            return await entity.ToListAsync();
+        }
+
+        /// <summary>
+        /// get all from entity with take adn skip
+        /// </summary>
+        /// <param name="take">number to take from entity</param>
+        /// <param name="skip">number to skip from entity</param>
+        /// <returns></returns>
         public async Task<IEnumerable<T>> GetAllAsync(int take, int skip=0)
         {
             return await entity.Take(take).Skip(skip).ToListAsync();

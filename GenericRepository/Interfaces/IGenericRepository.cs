@@ -10,6 +10,7 @@ namespace GenericRepository.Interfaces
     public interface IGenericRepository<T> where T : class
     {
         #region Query
+        Task<IEnumerable<T>> GetAllAsync();
         Task<IEnumerable<T>> GetAllAsync(int take,int skip=0);
         Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> where, int take, int skip=0);
         IEnumerable<T> GetAllWithSkipWhile(Expression<Func<T, bool>> where, int take, int skip = 0);
