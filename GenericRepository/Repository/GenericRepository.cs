@@ -64,6 +64,19 @@ namespace GenericRepository.Repository
         }
 
         /// <summary>
+        /// filter entities with like query in sql with take and skip
+        /// </summary>
+        /// <param name="query">query for filter entities with expression</param>
+        /// <param name="propertyName">the name of the entity property , the type of entity property must be string!</param>
+        /// <param name="take">number to take from entity</param>
+        /// <param name="skip">number to skip from entity</param>
+        /// <returns></returns>
+        public async Task<IEnumerable<T>> FilterAsync(string query, string propertyName, int take, int skip = 0)
+        {
+            return await entity.Where(e => EF.Functions.Like(e.GetProperty(propertyName) as string, $"%{query}%")).Skip(skip).Take(take).ToListAsync();
+        }
+
+        /// <summary>
         /// get all from entity with expression
         /// </summary>
         /// <param name="where">expression to filter entity</param>
