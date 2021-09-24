@@ -53,6 +53,17 @@ namespace GenericRepository.Repository
         }
 
         /// <summary>
+        /// filter entities with like query in sql
+        /// </summary>
+        /// <param name="query">query for filter entities with expression</param>
+        /// <param name="propertyName">the name of the entity property , the type of entity property must be string!</param>
+        /// <returns></returns>
+        public async Task<IEnumerable<T>> FilterAsync(string query, string propertyName)
+        {
+            return await entity.Where(e=>EF.Functions.Like(e.GetProperty(propertyName) as string, $"%{query}%")).ToListAsync();
+        }
+
+        /// <summary>
         /// get all from entity with expression
         /// </summary>
         /// <param name="where">expression to filter entity</param>
